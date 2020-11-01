@@ -1,0 +1,24 @@
+{
+    "0" : [
+        "Main Hall", "A grand entrance", {
+            "doors" : [
+                 ["Dining Room Door", "A grand door", "East", 1]
+            ]
+        }
+    ],
+    "1" : [
+        "Dining Room", "A posh room for dining.", {
+            "doors" : [
+                ["Dining Room Door", "A grand door", "West", 0],
+                ["Kitchen Door", "A smart door", "South", 2]
+            ]
+        }
+    ],
+    "2" : [
+        "Kitchen", "A functional room for cooking.", {
+            "doors" : [
+                ["Kitchen Door", "A rather battered door", "North", 1]
+            ]
+        }
+    ]
+}
