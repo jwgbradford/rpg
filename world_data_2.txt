@@ -1,7 +1,7 @@
 {
     "0" : {
         "name" : "Main Hall",
-        "description" : "A grand entrance", 
+        "description" : "A grand entrance",
         "contents" : {
             "doors" : [
                 {
@@ -49,4 +49,5 @@
             ]
         }
     }
+
 }

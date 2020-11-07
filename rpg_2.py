@@ -31,9 +31,15 @@ class MyGame:
                 door_description = door["description"]
                 door_direction = door["direction"]
                 door_leads_to_UID = door["connects_to"]
-                door_instance = Door(door_name, door_description, door_direction, door_leads_to_UID)
+                door_instance = Door(door_name, 
+                                    door_description, 
+                                    door_direction, 
+                                    door_leads_to_UID)
                 list_of_doors.append(door_instance)
-            room_instance = Room(room_UID, room_name, room_description, list_of_doors)
+            room_instance = Room(room_UID, 
+                                room_name, 
+                                room_description, 
+                                list_of_doors)
             list_of_rooms.append(room_instance)
         return list_of_rooms
 
