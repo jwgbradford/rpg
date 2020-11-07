@@ -1,0 +1,52 @@
+{
+    "0" : {
+        "name" : "Main Hall",
+        "description" : "A grand entrance", 
+        "contents" : {
+            "doors" : [
+                {
+                "name" : "Dining Room Door", 
+                "description" : "A grand door", 
+                "direction" : "East", 
+                "connects_to" : "1"
+                }
+            ]
+        }
+    },
+    "1" : {
+        "name" : "Dining Room",
+        "description" : "A posh room for dining", 
+        "contents" : {
+            "doors" : [
+                {
+                "name" : "Dining Room Door", 
+                "description" : "A grand door", 
+                "direction" : "West", 
+                "connects_to" : "0"
+                },
+                {
+                "name" : "Kitchen Door", 
+                "description" : "A smart door", 
+                "direction" : "South", 
+                "connects_to" : "2"
+                }
+
+            ]
+        }
+    },
+    "2" : {
+        "name" : "Kitchen",
+        "description" : "A functional room for cooking", 
+        "contents" : {
+            "doors" : [
+                {
+                "name" : "Kitchen Door", 
+                "description" : "A rather battered door", 
+                "direction" : "North", 
+                "connects_to" : "1"
+                }
+
+            ]
+        }
+    }
+}
