@@ -9,7 +9,7 @@ go [direction] : move in direction'''
 class MyGame:
     def __init__(self):
         self.rooms = self.build_world()
-        self.current_room = 0
+        self.current_room = "0"
         self.main_loop()
 
     def build_world(self):
@@ -17,10 +17,10 @@ class MyGame:
         with open(file_name) as file:
             world_data = json.load(file)
         file.closed
-        list_of_rooms = []
-        for data in world_data.items():
-            room_UID = data[0]
-            room_data = data[1]
+        dict_of_rooms = {}
+        for room_data in world_data:
+            room_UID = room_data["UID"]
+            #room_data = data[1]
             room_name = room_data["name"]
             room_description = room_data["description"]
             room_contents = room_data["contents"]
@@ -36,12 +36,13 @@ class MyGame:
                                     door_direction, 
                                     door_leads_to_UID)
                 list_of_doors.append(door_instance)
-            room_instance = Room(room_UID, 
+            room_instance = Room(room_UID,
                                 room_name, 
                                 room_description, 
-                                list_of_doors)
-            list_of_rooms.append(room_instance)
-        return list_of_rooms
+                                list_of_doors
+                                )
+            dict_of_rooms[room_UID] = room_instance
+        return dict_of_rooms
 
     def show_instructions(self):
         print(INSTRUCTIONS)
@@ -49,8 +50,23 @@ class MyGame:
     def main_loop(self):
         while True:
             self.show_instructions()
-            print(self.rooms[self.current_room].description)
+            print('You are in', self.rooms[self.current_room].name.lower() +'.')
             command = input('\n>')
+            self.parse(command)
+
+    def parse(self, cmd):
+        cmd = cmd.lower().split()
+        if len(cmd) == 0:
+            print('You forgot to type anything')
+            return
+        elif len(cmd) == 2:
+            action, modifier = cmd
+            if action == 'go':
+                direction = modifier
+                self.current_room = self.rooms[self.current_room].move(direction)
+        else:
+            print('I\'m not sure what you mean')
+
 
 class GameObject:
     def __init__(self, name, description):
@@ -58,10 +74,18 @@ class GameObject:
         self.description = description
 
 class Room(GameObject):
-    def __init__(self, UID, name, description, doors):
+    def __init__(self, room_UID, name, description, doors):
         super().__init__(name, description)
-        self.UID = UID
+        self.UID = room_UID
         self.doors = doors
+
+    def move(self, direction):
+        for door in self.doors:
+            if door.direction.lower() == direction:
+                print('You move', door.direction + '.')
+                return door.linked_room
+        print('You cannot go', direction)
+        return self.UID
 
 class Door(GameObject):
     def __init__(self, name, description, direction, room_UID):

@@ -1,5 +1,6 @@
-{
-    "0" : {
+[
+    {
+        "UID" : "0",
         "name" : "Main Hall",
         "description" : "A grand entrance",
         "contents" : {
@@ -13,7 +14,8 @@
             ]
         }
     },
-    "1" : {
+    {
+        "UID" : "1",
         "name" : "Dining Room",
         "description" : "A posh room for dining", 
         "contents" : {
@@ -34,7 +36,8 @@
             ]
         }
     },
-    "2" : {
+    {
+        "UID" : "2",
         "name" : "Kitchen",
         "description" : "A functional room for cooking", 
         "contents" : {
@@ -49,5 +52,4 @@
             ]
         }
     }
-
-}
+]
