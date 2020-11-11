@@ -1,7 +1,6 @@
 import json
 
 INSTRUCTIONS = '''Role Playing Game
-
 Commands
 ========
 go [direction] : move in direction'''
@@ -20,7 +19,6 @@ class MyGame:
         dict_of_rooms = {}
         for room_data in world_data:
             room_UID = room_data["UID"]
-            #room_data = data[1]
             room_name = room_data["name"]
             room_description = room_data["description"]
             room_contents = room_data["contents"]
@@ -58,15 +56,16 @@ class MyGame:
         cmd = cmd.lower().split()
         if len(cmd) == 0:
             print('You forgot to type anything')
-            return
         elif len(cmd) == 2:
             action, modifier = cmd
             if action == 'go':
                 direction = modifier
                 self.current_room = self.rooms[self.current_room].move(direction)
+            else:
+                print('I don\'t know how to do that.')
         else:
-            print('I\'m not sure what you mean')
-
+            print('I\'m not sure what you mean.')
+        return
 
 class GameObject:
     def __init__(self, name, description):
