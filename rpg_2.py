@@ -4,8 +4,8 @@ INSTRUCTIONS = '''Role Playing Game
 Commands
 ========
 go [direction] : move in direction
-look : have a look around
-commands: show these instructions'''
+look           : have a look around
+commands       : show these instructions'''
 
 class MyGame:
     def __init__(self):
