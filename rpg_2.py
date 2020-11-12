@@ -3,7 +3,9 @@ import json
 INSTRUCTIONS = '''Role Playing Game
 Commands
 ========
-go [direction] : move in direction'''
+go [direction] : move in direction
+look : have a look around
+commands: show these instructions'''
 
 class MyGame:
     def __init__(self):
@@ -46,9 +48,10 @@ class MyGame:
         print(INSTRUCTIONS)
 
     def main_loop(self):
+        self.show_instructions()
         while True:
-            self.show_instructions()
-            print('You are in', self.rooms[self.current_room].name.lower() +'.')
+            print('\n========')
+            print('You are in the', self.rooms[self.current_room].name.lower() +'.')
             command = input('\n>')
             self.parse(command)
 
@@ -56,6 +59,12 @@ class MyGame:
         cmd = cmd.lower().split()
         if len(cmd) == 0:
             print('You forgot to type anything')
+        elif len(cmd) == 1:
+            action = cmd[0]
+            if action == 'look':
+                self.rooms[self.current_room].look_around()
+            elif action == 'commands':
+                print(self.show_instructions())
         elif len(cmd) == 2:
             action, modifier = cmd
             if action == 'go':
@@ -85,6 +94,15 @@ class Room(GameObject):
                 return door.linked_room
         print('You cannot go', direction)
         return self.UID
+
+    def look_around(self):
+        print(self.description)
+        if len(self.doors) == 1:
+            print('You can see a door to the', self.doors[0].direction)
+        else:
+            print('You can see', len(self.doors), 'doors.')
+            for door in self.doors:
+                print('There is a door to the', door.direction)
 
 class Door(GameObject):
     def __init__(self, name, description, direction, room_UID):
